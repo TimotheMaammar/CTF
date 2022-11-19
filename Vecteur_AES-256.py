@@ -12,8 +12,8 @@ from Crypto.Cipher import AES
 
 longueur_bloc = 128/8
 
-cipher_text_b64 = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-cipher_text = base64.b64decode(cipher_text_b64)[:(int(longueur_bloc))]
+ciphertext_b64 = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+ciphertext = base64.b64decode(ciphertext_b64)[:(int(longueur_bloc))]
 
 key = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 key = base64.b64decode(key)
@@ -23,11 +23,11 @@ vecteur = (texte_clair[:(int(longueur_bloc))]).encode("utf-8")
 
 
 
-print("Texte chiffré : \n", cipher_text, "\n")
+print("Texte chiffré : \n", ciphertext, "\n")
 print("Texte clair : \n", texte_clair, "\n")
 print("Vecteur : \n", vecteur, "\n")
 print("Clé :", key, "\n")
 
 aes = AES.new(key, AES.MODE_CBC, vecteur)
 
-print ("Vecteur initial : ", aes.decrypt(cipher_text), "\n")
+print ("Vecteur initial : ", aes.decrypt(ciphertext), "\n")
