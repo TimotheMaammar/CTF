@@ -8,7 +8,7 @@ import cv2, requests, base64, pyzbar.pyzbar
 from bs4 import BeautifulSoup
 from PIL import Image, ImageDraw
 
-URL = "http://challenge01.root-me.org/programmation/ch7/"
+URL = "XXX"
 session = requests.Session()
 path = "./image_decodee_3.png"
 path_image_correcte = "./image_correcte.png"
