@@ -7,7 +7,7 @@
 # Structure d'un fichier PDF : 
 
 	# 1) Header 	=> Version, commentaires, etc.
-	# 2) Corps 		=> Liste d'objets contenant du texte, des images, etc.
+	# 2) Corps 	=> Liste d'objets contenant du texte, des images, etc.
 	# 3) Table XREF => Genre de sommaire qui référence tous les objets
 	# 4) Trailer 	=> Informations sur l'emplacement de la table XREF, sa taille, son offset, etc.
 ####################################################################################################
@@ -30,7 +30,7 @@ python2.7 peepdf.py ../fichier.pdf -i
 	# On extrait le contenu de l'objet numéro 77
 	# Il existe aussi 'rawstream', 'object' et 'rawobject' pour l'extraction sous différents formats
 	# Penser aussi aux commandes suivantes pour inspecter le fichier de fond en comble :
-		# info, tree, offsets, metadata, js_analyse, ...
+	# info, tree, offsets, metadata, js_analyse, ...
 
 # Autre manière de faire avec pdf-parser :
 # pdf-parser -o 77 -f -d stream77.txt fichier.pdf
