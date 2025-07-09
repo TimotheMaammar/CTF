@@ -29,5 +29,6 @@
 - https://crt.sh/
 - https://www.cubdomain.com/
 - https://viewdns.info/
+- https://web.archive.org/ 
 
   
