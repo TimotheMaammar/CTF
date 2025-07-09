@@ -7,6 +7,11 @@
     assetfinder -subs-only domaine.com
     ffuf -u https://FUZZ.domaine.com -w /usr/share/wordlists/seclists/Discovery/DNS/subdomains-top1million-20000.txt -k
 
+# Tri puis chaînage 
+
+    cat domaines.txt | sort -u > domaines_clean.txt
+    cat domaines_clean.txt | ./wappaGo
+    
 # Installation si besoin 
 
     sudo apt install amass
