@@ -10,7 +10,7 @@
 # Tri puis chaînage 
 
     cat domaines.txt | sort -u > domaines_clean.txt
-    cat domaines_clean.txt | ./wappaGo
+    cat domaines_clean.txt | ./wappaGo -report -screenshot ./dump
     
 # Installation si besoin 
 
